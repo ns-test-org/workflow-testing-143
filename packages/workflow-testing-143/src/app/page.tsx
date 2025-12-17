@@ -8,8 +8,17 @@ interface Todo {
   completed: boolean;
 }
 
+// Generate 50 initial todos for scrolling test
+const generateInitialTodos = (): Todo[] => {
+  return Array.from({ length: 50 }, (_, i) => ({
+    id: i + 1,
+    text: `Todo item #${i + 1}`,
+    completed: false,
+  }));
+};
+
 export default function TodoApp() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>(generateInitialTodos());
   const [inputValue, setInputValue] = useState('');
 
   const addTodo = () => {
@@ -42,8 +51,8 @@ export default function TodoApp() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 p-6 flex items-center justify-center">
-      <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 p-6">
+      <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl p-8">
         <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">
           My Todo List
         </h1>
@@ -114,4 +123,5 @@ export default function TodoApp() {
     </div>
   );
 }
+
 
